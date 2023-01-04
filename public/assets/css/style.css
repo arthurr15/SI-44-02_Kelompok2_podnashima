@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Rubik+Distressed&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.navbar a {
+  color: #e0e0e0;
+  font-weight: 600;
+}
+
+.navbar a:hover {
+  color: #fff;
+}

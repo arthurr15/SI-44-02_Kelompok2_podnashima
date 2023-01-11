@@ -1,91 +1,36 @@
-@include('component.layout')
+@extends('component.layout')
 
-<section id="register">
-        <div class="container-fluid">
-            <div class="row align-items-center">
-                <div class="col-md-6 min-vh-100">
-                    <br><br><br>
-                    <div class= "container-fluid border border-2 rounded" style="margin-right: auto;">
-                <div class="form-login m-auto ps-5"><br><br>
-                    <h2 class="fw-bold mb-4">Register</h2>
-                    <form action="{{ url('/register')}}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <!-- Email input -->
-                        <div class="mb-3 position-relative">
-                            <label class="form-label " for="email">Email address</label>
-                            <span class="required" style="top: 0px; left: 41px;"></span>
-                            <input type="email" id="email" class="form-control form-control-lg" name="email"
-                                placeholder="masukan email" required />
+@section('title')
+    <link rel="stylesheet" href="{{ asset('auth.css') }}">
+    <title>Registrasi Akun</title>
+@endsection
 
-                        </div>
-                        <!-- nama input -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label" for="name">Name</label>
-                            <span class="required" style="top: 0px; left: 41px;"></span>
-                            <input type="name" id="name" class="form-control form-control-lg" name="name"
-                                placeholder="masukan name" required />
-                        </div>
-                        <!-- no hp input -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label" for="no_hp">No Hp</label>
-                            <span class="required" style="top: 0px; left: 41px;"></span>
-                            <input type="no_hp" id="no_hp" class="form-control form-control-lg" name="no_hp"
-                                placeholder="masukan No Hp" required />
-                        </div>
-                        <!-- Password input -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label" for="password">Password</label>
-                            <span class="required" style="top: 0px; left: 41px;"></span>
-                            <input type="password" id="password" class="form-control form-control-lg" name="password"
-                                placeholder="masukan password" required />
-                        </div>
-                        <div class="form-outline mb-4">
-                            <!-- Password input -->
-                            <div class="form-outline mb-3">
-                                <label class="form-label" for="password2">konfirmasi Password</label>
-                                <span class="required" style="top: 0px; left: 41px;"></span>
-                                <input type="password" id="password2" class="form-control form-control-lg"
-                                    name="password2" placeholder="masukan ulang password" required />
-                            </div>
-                            <div class="text-center text-lg-start mt-4 pt-2">
-                                <button type="submit" name="daftar" class="btn btn-dark btn-lg"
-                                    style="padding-left: 2.5rem; padding-right: 2.5rem;">Daftar</button>
-                                <p class="small fw-bold mt-2 pt-1 mb-0">anda sudah punya akun? <a
-                                        href="{{ 
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            'login' }}" class="link-warning">Login</a></p>
-                            </div>
-                    </form>
-                </div>
-            </div>
+@section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
+    @endif
+    <div class="bg-putih h-md-100">
+        <form class="auth bg-oren" action="{{ url('register') }}" method="POST">
+            @csrf
+            <h5 class="text-center">Registrasi</h5>
+
+            <input type="text" class="form-control form-control-lg" name="name" placeholder="Nama" required />
+
+            <input type="email" class="form-control form-control-lg" name="email" placeholder="Email" required />
+
+            <input type="password" class="form-control form-control-lg" name="password" placeholder="Password" required />
+
+            <input type="password" class="form-control form-control-lg" name="password_confirmation"
+                placeholder="Ulangi Password" required />
+
+            <button type="submit" class="btn btn-primary">Registrasi</button>
+            <a href="{{ url('login') }}">Sudah memiliki akun</a>
+        </form>
     </div>
-</section>
+@endsection

@@ -1,254 +1,207 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('component.layout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@section('title')
+    <title>D'Nasima</title>
+@endsection
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <style>
-        @media (min-width: 768px) {
-            .h-md-100 {
-                height: 100vh;
-            }
-        }
-
-        .btn-round {
-            border-radius: 30px;
-        }
-
-        .bg-left {
-            background: #fca311;
-        }
-
-        .bg-right {
-            background: #e5e5e5;
-        }
-
-        .bg-utama {
-            background: #14213d;
-        }
-
-        .text-utama {
-            color: #14213d;
-        }
-
-        .text-utamaterang {
-            color: #e5e5e5;
-        }
-    </style>
-
-    <title>TiketBis</title>
-</head>
-
-<body>
+@section('content')
     <div class="d-md-flex h-md-100 align-items-center">
 
         <!-- First Half -->
-        <div class="col-md-4 p-0 bg-left h-md-100">
-            <div class="text-white d-md-flex p-2 text-center justify-content-center" style="height: 150px;">
-                <div class="logoarea p-2 d-flex align-items-center">
-                    <img src="{{ asset('/img/logo.gif') }}" alt="" width="150px">
-                </div>
-                <div class="logoarea p-2 d-flex align-items-center">
-                    <h3 class="text-utama">BIS ARTUR</h3>
-                </div>
-            </div>
+        <div class="col-md-4 p-0 bg-putih h-md-100">
 
-            <div class="text-center p-2 bg-utama text-utamaterang">
+            <div class="text-center p-2 bg-oren">
                 <h6 class="m-0">
                     PEMESANAN TIKET
                 </h6>
             </div>
 
             <div class="book-form px-3 py-2" style="height: 280px;">
-                <form id="bookform" action="" method="post">
+                <form id="bookform" action="{{ url('/tiket') }}" method="post">
+                    @csrf
                     <div class="input-group my-2">
-                        <label class="input-group-text" for="origination2">
+                        <label class="input-group-text" style="width: 50px;" for="origination2">
                             <i class="fa fa-map-marker fa-lg" aria-hidden="true"></i>
                         </label>
-                        <select name="origination" id="origination2" class="form-select" tabindex="-1"
+                        <select name="terminal_asal" id="origination2" class="form-select" tabindex="-1"
                             aria-hidden="true">
                             <option selected="selected" value="">Terminal Asal</option>
                             <optgroup label="BANDUNG TIMUR">
-                                <option value="">CITARUM</option>
+                                <option value="0">CITARUM</option>
 
-                                <option value="">TAMAN SARI</option>
+                                <option value="1">TAMAN SARI</option>
                             </optgroup>
                             <optgroup label="BANDUNG BARAT">
-                                <option value="">CIJERAH</option>
+                                <option value="2">CIJERAH</option>
 
-                                <option value="">GEMPOL SARI</option>
+                                <option value="3">GEMPOL SARI</option>
                             </optgroup>
                             <optgroup label="BANDUNG SELATAN">
-                                <option value="">BATUNUNGGAL</option>
+                                <option value="4">BATUNUNGGAL</option>
 
-                                <option value="">MENGGER</option>
+                                <option value="5">MENGGER</option>
                             </optgroup>
                             <optgroup label="BUAH BATU">
-                                <option value="">BUAH BATU</option>
+                                <option value="6">BUAH BATU</option>
                             </optgroup>
                             <optgroup label="KIARACONDONG">
-                                <option value="">KIARACONDONG</option>
+                                <option value="7">KIARACONDONG</option>
 
-                                <option value="">CICAHEUM</option>
+                                <option value="8">CICAHEUM</option>
                             </optgroup>
                             <optgroup label="COBLONG">
-                                <option value="">CIPAGANTI</option>
+                                <option value="9">CIPAGANTI</option>
 
-                                <option value="">DAGO</option>
+                                <option value="10">DAGO</option>
                             </optgroup>
                             <optgroup label="BEKASI">
-                                <option value="">BEKASI</option>
+                                <option value="11">BEKASI KOTA</option>
                             </optgroup>
                             <optgroup label="JAKARTA PUSAT">
-                                <option value="">GAMBIR</option>
-                                <option value="">SENEN</option>
-                                <option value="">TANAH ABANG</option>
-                                <option value="">MENTENG</option>
+                                <option value="12">GAMBIR</option>
+                                <option value="13">SENEN</option>
+                                <option value="14">TANAH ABANG</option>
+                                <option value="15">MENTENG</option>
                             </optgroup>
                             <optgroup label="JAKARTA UTARA">
-                                <option value="">KELAPA GADING</option>
+                                <option value="16">KELAPA GADING</option>
 
-                                <option value="">ANCOL</option>
+                                <option value="17">ANCOL</option>
 
-                                <option value="">TANJUNG PRIUK</option>
+                                <option value="18">TANJUNG PRIUK</option>
                             </optgroup>
                             <optgroup label="JAKARTA TIMUR">
-                                <option value="">DUREN SAWIT</option>
+                                <option value="19">DUREN SAWIT</option>
 
-                                <option value="">PONDOK KOPI</option>
+                                <option value="20">PONDOK KOPI</option>
 
-                                <option value="">KRAMAT JATI</option>
+                                <option value="21">KRAMAT JATI</option>
 
-                                <option value="">JATINEGARA</option>
+                                <option value="22">JATINEGARA</option>
 
-                                <option value="">PULO GADUNG</option>
+                                <option value="23">PULO GADUNG</option>
                             </optgroup>
                             <optgroup label="JAKARTA BARAT">
-                                <option value="">CENGKARENG</option>
+                                <option value="24">CENGKARENG</option>
 
-                                <option value="">KEBON JERUK</option>
+                                <option value="25">KEBON JERUK</option>
 
-                                <option value="">GROGOL</option>
+                                <option value="26">GROGOL</option>
 
-                                <option value="">PALMERAH</option>
+                                <option value="27">PALMERAH</option>
                             </optgroup>
                             <optgroup label="JAKARTA SELATAN">
-                                <option value="">CILANDAK</option>
+                                <option value="28">CILANDAK</option>
 
-                                <option value="">KEBAYORAN BARU</option>
+                                <option value="29">KEBAYORAN BARU</option>
 
-                                <option value="">MAMPANG</option>
+                                <option value="30">MAMPANG</option>
 
-                                <option value="">PANCORAN</option>
+                                <option value="31">PANCORAN</option>
 
-                                <option value="">TEBET</option>
+                                <option value="32">TEBET</option>
                             </optgroup>
                         </select>
                     </div>
 
                     <div class="input-group my-2">
-                        <label class="input-group-text" for="destination2">
+                        <label class="input-group-text" style="width: 50px;" for="destination2">
                             <i class="fa fa-map-marker fa-lg" aria-hidden="true"></i>
                         </label>
-                        <select name="destination" id="destination2" class="form-select" tabindex="-1"
+                        <select name="terminal_tujuan" id="destination2" class="form-select" tabindex="-1"
                             aria-hidden="true">
                             <option selected="selected" value="">Terminal Tujuan</option>
                             <optgroup label="BANDUNG TIMUR">
-                                <option value="">CITARUM</option>
+                                <option value="0">CITARUM</option>
 
-                                <option value="">TAMAN SARI</option>
+                                <option value="1">TAMAN SARI</option>
                             </optgroup>
                             <optgroup label="BANDUNG BARAT">
-                                <option value="">CIJERAH</option>
+                                <option value="2">CIJERAH</option>
 
-                                <option value="">GEMPOL SARI</option>
+                                <option value="3">GEMPOL SARI</option>
                             </optgroup>
                             <optgroup label="BANDUNG SELATAN">
-                                <option value="">BATUNUNGGAL</option>
+                                <option value="4">BATUNUNGGAL</option>
 
-                                <option value="">MENGGER</option>
+                                <option value="5">MENGGER</option>
                             </optgroup>
                             <optgroup label="BUAH BATU">
-                                <option value="">BUAH BATU</option>
+                                <option value="6">BUAH BATU</option>
                             </optgroup>
                             <optgroup label="KIARACONDONG">
-                                <option value="">KIARACONDONG</option>
+                                <option value="7">KIARACONDONG</option>
 
-                                <option value="">CICAHEUM</option>
+                                <option value="8">CICAHEUM</option>
                             </optgroup>
                             <optgroup label="COBLONG">
-                                <option value="">CIPAGANTI</option>
+                                <option value="9">CIPAGANTI</option>
 
-                                <option value="">DAGO</option>
+                                <option value="10">DAGO</option>
                             </optgroup>
                             <optgroup label="BEKASI">
-                                <option value="">BEKASI</option>
+                                <option value="11">BEKASI KOTA</option>
                             </optgroup>
                             <optgroup label="JAKARTA PUSAT">
-                                <option value="">GAMBIR</option>
-                                <option value="">SENEN</option>
-                                <option value="">TANAH ABANG</option>
-                                <option value="">MENTENG</option>
+                                <option value="12">GAMBIR</option>
+                                <option value="13">SENEN</option>
+                                <option value="14">TANAH ABANG</option>
+                                <option value="15">MENTENG</option>
                             </optgroup>
                             <optgroup label="JAKARTA UTARA">
-                                <option value="">KELAPA GADING</option>
+                                <option value="16">KELAPA GADING</option>
 
-                                <option value="">ANCOL</option>
+                                <option value="17">ANCOL</option>
 
-                                <option value="">TANJUNG PRIUK</option>
+                                <option value="18">TANJUNG PRIUK</option>
                             </optgroup>
                             <optgroup label="JAKARTA TIMUR">
-                                <option value="">DUREN SAWIT</option>
+                                <option value="19">DUREN SAWIT</option>
 
-                                <option value="">PONDOK KOPI</option>
+                                <option value="20">PONDOK KOPI</option>
 
-                                <option value="">KRAMAT JATI</option>
+                                <option value="21">KRAMAT JATI</option>
 
-                                <option value="">JATINEGARA</option>
+                                <option value="22">JATINEGARA</option>
 
-                                <option value="">PULO GADUNG</option>
+                                <option value="23">PULO GADUNG</option>
                             </optgroup>
                             <optgroup label="JAKARTA BARAT">
-                                <option value="">CENGKARENG</option>
+                                <option value="24">CENGKARENG</option>
 
-                                <option value="">KEBON JERUK</option>
+                                <option value="25">KEBON JERUK</option>
 
-                                <option value="">GROGOL</option>
+                                <option value="26">GROGOL</option>
 
-                                <option value="">PALMERAH</option>
+                                <option value="27">PALMERAH</option>
                             </optgroup>
                             <optgroup label="JAKARTA SELATAN">
-                                <option value="">CILANDAK</option>
+                                <option value="28">CILANDAK</option>
 
-                                <option value="">KEBAYORAN BARU</option>
+                                <option value="29">KEBAYORAN BARU</option>
 
-                                <option value="">MAMPANG</option>
+                                <option value="30">MAMPANG</option>
 
-                                <option value="">PANCORAN</option>
+                                <option value="31">PANCORAN</option>
 
-                                <option value="">TEBET</option>
+                                <option value="32">TEBET</option>
                             </optgroup>
                         </select>
 
                     </div>
 
                     <div class="input-group my-2">
-                        <span id="date2" class="input-group-text"><i class="fa fa-calendar fa-lg" aria-hidden="true"></i></span>
-                        <input type="date" name="tanggal" aria-describedby="date2" class="form-control">
+                        <span id="date2" class="input-group-text" style="width: 50px;"><i
+                                class="fa fa-calendar fa-lg" aria-hidden="true"></i></span>
+                        <input type="date" name="tanggal_keberangkatan" aria-describedby="date2"
+                            class="form-control">
                     </div>
 
                     <div class="input-group my-2">
-                        <label class="input-group-text" for="adult2">
+                        <label class="input-group-text" style="width: 50px;" for="adult2">
                             <i class="fa fa-male fa-lg" aria-hidden="true"></i>
                         </label>
-                        <select name="adult" id="adult2" class="form-select" tabindex="-1"
-                            aria-hidden="true">
+                        <select name="dewasa" id="adult2" class="form-select" tabindex="-1" aria-hidden="true">
                             <optgroup label="Dewasa (≥ 3 thn)">
                                 <option selected="selected" value="1">1 Dewasa</option>
                                 <option value="2">2 Dewasa</option>
@@ -266,11 +219,10 @@
                     </div>
 
                     <div class="input-group my-2">
-                        <label class="input-group-text" for="adult2">
+                        <label class="input-group-text" style="width: 50px;" for="anak">
                             <i class="fa fa-child fa-lg" aria-hidden="true"></i>
                         </label>
-                        <select name="infant" id="infant2" class="form-select" tabindex="-1"
-                            aria-hidden="true">
+                        <select name="anak" id="anak" class="form-select" tabindex="-1" aria-hidden="true">
                             <optgroup label="Infant (< 3 thn)">
                                 <option selected="selected" value="0">0 Infant</option>
                                 <option value="1">1 Infant</option>
@@ -289,43 +241,36 @@
                     </div>
 
                     <div class="input-group my-2">
-                        <label class="input-group-text" for="adult2">
+                        <label class="input-group-text" style="width: 50px;" for="kelas">
                             <i class="fa fa-bus fa-lg" aria-hidden="true"></i>
                         </label>
-                        <select name="infant" id="infant2" class="form-select" tabindex="-1"
-                            aria-hidden="true">
+                        <select name="kelas" id="kelas" class="form-select" tabindex="-1" aria-hidden="true">
                             <optgroup label="Kelas Kursi">
-                                <option selected="selected" value="">Reguler</option>
-                                <option value="">VIP</option>
+                                <option selected="selected" value="Ekonomi">Ekonomi - Rp 125.000</option>
+                                <option value="VIP">VIP - Rp 300.000</option>
                             </optgroup>
                         </select>
 
                     </div>
 
                     <div class=" my-4 text-center">
-                        <button class="btn btn-primary">Pesan &amp; Cari BIS</button>
+                        <button type="submit" class="btn btn-primary">Pesan &amp; Cari BIS</button>
                     </div>
                 </form>
             </div>
         </div>
 
         <!-- Second Half -->
-        <div class="col-md-8 p-0 bg-right h-md-100 loginarea">
-            <header class="p-3 pb-0">
-                <div class="container">
-                    <div
-                        class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
-                        <div class="col-md-6 text-left">
-                            <p class="my-0 mx-1">Hi,<b> Artur</b></p>
-                        </div>
-                        <div class="col-md-6 text-end">
-                            <button type="button" class="btn btn-outline-primary">My Ticket</button>
-                            <button type="button" class="btn btn-danger">Logout</button>
-                        </div>
-                    </div>
+        <div class="col-md-8 p-0 h-md-100 loginarea">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
-            </header>
-
+            @endif
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -334,27 +279,36 @@
                         aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
                         aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                        aria-label="Slide 4"></button>
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{ asset('/img/car1.jpg') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('/img/car1.jpeg') }}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
+                            <h5>PO D’Nasima</h5>
+                            <p>PO andalan lintas Bandung-Jakarta</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ asset('/img/car2.jpg') }}" class="d-block w-100" alt="car2.jpg">
+                        <img src="{{ asset('/img/car2.jpeg') }}" class="d-block w-100" alt="car2.jpg">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>Second slide label</h5>
-                            <p>Some representative placeholder content for the second slide.</p>
+                            <h5>PO D’Nasima</h5>
+                            <p>PO andalan lintas Bandung-Jakarta</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ asset('/img/car2.jpg') }}" class="d-block w-100" alt="car2.jpg">
+                        <img src="{{ asset('/img/car3.jpeg') }}" class="d-block w-100" alt="car3.jpg">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>Third slide label</h5>
-                            <p>Some representative placeholder content for the third slide.</p>
+                            <h5>PO D’Nasima</h5>
+                            <p>PO andalan lintas Bandung-Jakarta</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('/img/car4.jpeg') }}" class="d-block w-100" alt="car4.jpg">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>PO D’Nasima</h5>
+                            <p>PO andalan lintas Bandung-Jakarta</p>
                         </div>
                     </div>
                 </div>
@@ -372,11 +326,4 @@
         </div>
 
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-</body>
-
-</html>
+@endsection

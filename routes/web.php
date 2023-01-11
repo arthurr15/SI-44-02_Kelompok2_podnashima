@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\HomepageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,25 +16,17 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/register', [UserController::class, 'index'])->name('register.get');
-Route::post('/register', [UserController::class, 'register']);
-Route::get('login', [UserController::class, 'login'])->name('login.get');
-Route::post('login', [UserController::class, 'loginUser'])->name('login.post');
-Route::get('logout', [UserController::class, 'logout'])->name('login.get');
+Route::get('/register', [UserController::class, 'register']);
+Route::post('/register', [UserController::class, 'registerUser']);
+Route::get('/login', [UserController::class, 'login']);
+Route::post('/login', [UserController::class, 'loginUser'])->name('login');
 Route::post('/logout', [UserController::class, 'logoutUser']);
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [HomepageController::class, 'index'])->name('home');
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/admin', [HomepageController::class, 'admin']);
+Route::get('/pembayaran/{id}', [HomepageController::class, 'bayar']);
+Route::get('/pembayaran/{id}/berhasil', [HomepageController::class, 'bayarberhasil']);
 
-Route::get('/register', function () {
-    return view('register');
-});
-
-Route::get('/logout', function () {
-    return view('login');
-});
+Route::get('/tiket', [TicketController::class, 'index']);
+Route::post('/tiket', [TicketController::class, 'tiket']);

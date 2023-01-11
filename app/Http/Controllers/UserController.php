@@ -11,17 +11,12 @@ class UserController extends Controller
 {
     //
 
-    public function index()
+    public function register()
     {
         return view('register');
     }
 
     public function login()
-    {
-        return view('login');
-    }
-
-    public function logout()
     {
         return view('login');
     }
@@ -32,18 +27,23 @@ class UserController extends Controller
      * @param Request $request
      * @return response
      */
-    public function register(Request $request)
+    public function registerUser(Request $request)
     {
-        $data = $request->all();
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required|confirmed',
+        ]);
 
         User::create([
             'name' => $data['name'],
-            'no_hp' => $data['no_hp'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
 
-        return redirect('/login')->with('success', 'Register Success');
+        auth()->attempt($data);
+
+        return redirect('/')->with('success', 'Register Success');
     }
 
     /**
@@ -56,17 +56,16 @@ class UserController extends Controller
     {
         $request->validate([
             'email' => 'required|string|email',
-            'password' => 'required|string',
-            'remember_me' => 'boolean'
+            'password' => 'required|string'
         ]);
 
 
         // login user with email and password
         $credentials = request(['email', 'password']);
         if (!auth()->attempt($credentials))
-            return redirect()->route('login')->with('error', 'Login Failed');
+            return redirect()->route('login')->withErrors('user tidak ditemukan / password salah');
 
-        return redirect('/')->with('success', 'Login Success');
+        return redirect('/');
     }
 
     /**
